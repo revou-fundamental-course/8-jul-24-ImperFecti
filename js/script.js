@@ -35,9 +35,14 @@ document.getElementById("bmiForm").addEventListener("submit", function (e) {
   }
 
   document.getElementById("result").innerHTML = `
+        <hr>
         <h2>${category}</h2>
         <p>Hasil <b>BMI</b> anda adalah ${bmi}</p>
         <p>${explanation}</p>
         <p>Jenis Kelamin: ${gender}</p>
     `;
+});
+
+document.getElementById("resetButton").addEventListener("click", function () {
+  document.getElementById("result").innerHTML = "";
 });

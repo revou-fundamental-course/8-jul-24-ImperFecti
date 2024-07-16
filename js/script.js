@@ -3,9 +3,12 @@ document.getElementById("bmiForm").addEventListener("submit", function (e) {
 
   const weight = parseFloat(document.getElementById("weight").value);
   const height = parseFloat(document.getElementById("height").value) / 100;
+  const gender = document.getElementById("gender").value;
 
-  if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
-    alert("Masukkan nilai yang valid untuk berat dan tinggi badan.");
+  if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0 || !gender) {
+    alert(
+      "Masukkan nilai yang valid untuk berat dan tinggi badan serta pilih jenis kelamin."
+    );
     return;
   }
 
@@ -35,5 +38,6 @@ document.getElementById("bmiForm").addEventListener("submit", function (e) {
         <h2>${category}</h2>
         <p>Hasil <b>BMI</b> anda adalah ${bmi}</p>
         <p>${explanation}</p>
+        <p>Jenis Kelamin: ${gender}</p>
     `;
 });

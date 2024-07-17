@@ -1,10 +1,14 @@
+// Event listener untuk form submit
 document.getElementById("bmiForm").addEventListener("submit", function (e) {
+  // Mencegah form dari submit default
   e.preventDefault();
 
+  // Mendapatkan nilai input dari form
   const weight = parseFloat(document.getElementById("weight").value);
   const height = parseFloat(document.getElementById("height").value) / 100;
   const gender = document.getElementById("gender").value;
 
+  // Memeriksa apakah input valid
   if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0 || !gender) {
     alert(
       "Masukkan nilai yang valid untuk berat dan tinggi badan serta pilih jenis kelamin."
@@ -12,10 +16,16 @@ document.getElementById("bmiForm").addEventListener("submit", function (e) {
     return;
   }
 
+  // Menyembunyikan paragraf di bawah h1 ketika menekan tombol hitung BMI
+  const paragraphs = document.querySelectorAll("h1 + p, h1 + p + p");
+  paragraphs.forEach((paragraph) => (paragraph.style.display = "none"));
+
+  // Menghitung BMI
   const bmi = (weight / (height * height)).toFixed(2);
   let category = "";
   let explanation = "";
 
+  // Menentukan kategori BMI dan penjelasannya
   if (bmi < 18.5) {
     category = "Kekurangan Berat Badan";
     explanation =
@@ -34,6 +44,7 @@ document.getElementById("bmiForm").addEventListener("submit", function (e) {
       "BMI Anda menunjukkan obesitas. Penting untuk berkonsultasi dengan penyedia layanan kesehatan untuk mengatasi potensi risiko kesehatan dan mengembangkan rencana pengelolaan berat badan.";
   }
 
+  // Print out hasil BMI
   document.getElementById("result").innerHTML = `
         <hr>
         <h2>${category}</h2>
@@ -43,6 +54,12 @@ document.getElementById("bmiForm").addEventListener("submit", function (e) {
     `;
 });
 
+// Event listener untuk tombol reset
 document.getElementById("resetButton").addEventListener("click", function () {
+  // Mengosongkan hasil BMI
   document.getElementById("result").innerHTML = "";
+
+  // Menampilkan kembali paragraf di bawah h1
+  const paragraphs = document.querySelectorAll("h1 + p, h1 + p + p");
+  paragraphs.forEach((paragraph) => (paragraph.style.display = "block"));
 });
